@@ -11,5 +11,9 @@ function multiplyValues (firstValue,...values){
     return  values.reduce((total,value)=> total *= value,firstValue);
 };
 
+function divideValues (firstValue,...values){
+    return  values.reduce((total,value)=> total /= value,firstValue);
+};
 
+divideValues(10,2,2)
 
