@@ -12,5 +12,68 @@ body{
 .calculator-container{
     display: flex;
     justify-content: center;
+    
 }
+
+.calculator-frame{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height:600px;
+    margin-top: 20px;
+    background-color: rgb(32, 51, 102);
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px;
+}
+
+.calculator-frame .display{
+    background-color: #363a52;
+    flex: 1;
+}
+
+.calculator-frame .number-container{
+    display: flex;
+    flex: 2;
+}
+
+.number-grid{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 45px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex: 3;
+    background-color: #1a1c2a;
+}
+
+.operator-grid{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    background-color: #1b91fc;
+    flex: 1;
+}
+
+.operator{
+    font-size: 45px;
+}
+
+.operator.clr{
+    font-size: 30px;
+}
+
+.number{
+    flex: 3;
+    font-size: 50px;
+    color: white;
+}
+
+.row{
+    gap: 70px;
+    display: flex;
+}
+
 
