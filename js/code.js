@@ -19,5 +19,20 @@ function divideValues (firstValue,...values){
     return  values.reduce((total,value)=> total /= value,firstValue);
 };
 
+function operate (firstValue,operator,secondValue){
+    if (operator === '+'){
+        return addValues(firstValue,secondValue);
+    }else if (operator === '-'){
+        return subtractValues(firstValue,secondValue);
+    }else if (operator === '*'){
+        return multiplyValues(firstValue,secondValue);
+    }else if (operator === '/'){
+        return divideValues(firstValue,secondValue);
+    }else{
+        return 'INVALID OPERATOR';
+    }
+};
+
+
 
 
