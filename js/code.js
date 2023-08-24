@@ -7,4 +7,9 @@ function subtractValues (firstValue,...values){
     return  values.reduce((total,value)=> total -= value,firstValue);
 };
 
-subtractValues(5,2)
+function multiplyValues (firstValue,...values){
+    return  values.reduce((total,value)=> total *= value,firstValue);
+};
+
+
+
