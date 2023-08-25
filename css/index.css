@@ -89,6 +89,7 @@ body{
 }
 
 .number{
+    cursor: pointer;
     flex: 3;
     font-size: 50px;
     color: white;
