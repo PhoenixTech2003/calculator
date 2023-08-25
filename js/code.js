@@ -33,6 +33,15 @@ function operate (firstValue,operator,secondValue){
     }
 };
 
+function updateExpressionDisplay(){
+    buttons = document.querySelectorAll('.number');
+    buttons.forEach(button => button.addEventListener("click",function(e){
+        console.log(e.target.innerHTML);
+    })
+        
+    );
+};
 
+updateExpressionDisplay();
 
 
