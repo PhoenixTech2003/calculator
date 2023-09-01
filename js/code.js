@@ -57,12 +57,17 @@ function setOperator (){
             setValue(secondValue);
         }
         operator =  e.target.textContent;
-        display.textContent = `${result.textContent} ${operator}`;
+        if(operator === '='){
+            display.textContent = `${result.textContent}`
+        }else{
+            
+            display.textContent = `${result.textContent} ${operator}`;
+        }
     
     })});
 }
 
-function calculateResult(){
+function stringOperations(){
     let ops = ['+','/','-','x'];
     operators.forEach(test =>{
         test.addEventListener('click',()=>{
@@ -70,7 +75,7 @@ function calculateResult(){
                 if(display.textContent.includes(op)){
                    let index = display.textContent.indexOf(op);
                     let value = display.textContent.slice(0, index).trim();
-                    display.textContent = `${value} ${operator} ${result.textContent} =`
+                    display.textContent = `${value} ${operator} ${result.textContent}`
                     firstValue = operate(Number(value),operator,Number(result.textContent));
                     result.textContent = firstValue;
                 }
@@ -84,36 +89,31 @@ function calculateResult(){
     })
 }
 
-function stringOperations(){
-    console.log(result.textContent);
-    let ops = ['+','/','-','x'];
-    operators.forEach((operator)=>{
-        operator.addEventListener('click',function (e){
-            ops.forEach((op)=>{
-                
-                if(display.textContent.includes(op)){
-                    
-                    let index = display.textContent.indexOf(op);
-                    let value = display.textContent.slice(0, index).trim();
-                    if(value === result.textContent){
-                        setOperator()
-                    }else{
-                        let firstValue2 = operate(Number(value),operator.textContent,Number(result.textContent));
-                        console.log(firstValue2);
-                        display.textContent = `${value} ${operator.textContent} ${result.textContent} =`
-                        result.textContent = firstValue2;
-                        
-                    }
-                
 
-                                    
+function calculateResult(){
+    let ops = ['+','/','-','x'];
+        equals.addEventListener('click',()=>{
+            ops.forEach((op)=>{
+                if(display.textContent.includes(op)){
+                   let index = display.textContent.indexOf(op);
+                    let value = display.textContent.slice(0, index).trim();
+                    display.textContent = `${value} ${operator} ${result.textContent}`
+                    firstValue = operate(Number(value),operator,Number(result.textContent));
+                    result.textContent = firstValue;
                 }
             })
-        });
-    });
-};
+        })
 
-calculateResult();
+
+
+
+
+    
+}
+
+
+
+stringOperations();
 setValue(firstValue);
 setOperator();
-stringOperations();
+
