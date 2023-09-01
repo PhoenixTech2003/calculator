@@ -22,6 +22,7 @@ body{
     color: white;
     font-size: 50px;
     margin-right:15px;
+    display: flex;
 
 }
 
@@ -89,7 +90,7 @@ body{
     font-size: 30px;
 }
 
-.number{
+.number,.btn-equals{
     cursor: pointer;
     flex: 3;
     font-size: 50px;

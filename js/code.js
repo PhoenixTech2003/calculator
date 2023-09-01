@@ -1,6 +1,14 @@
-let firstValue;
-let operator;
-let secondValue;
+
+const numbers = document.querySelectorAll('.number');
+const result = document.querySelector('.result-container')
+const operators = document.querySelectorAll('.operator');
+const equals = document.querySelector('.btn-equals')
+
+const display = document.querySelector('.expression-container');
+let secondValue = '';
+let operator = '';
+let firstValue = '';
+
 
 function addValues (firstValue,...values){
     return firstValue + values.reduce((total,value)=> total += value,0);
@@ -32,59 +40,80 @@ function operate (firstValue,operator,secondValue){
         return 'INVALID OPERATOR';
     }
 };
-
-function updateExpressionDisplay(){
-    let displayArray = new Array(3);
-    const buttons = document.querySelectorAll('.btn');
-    buttons.forEach(button => button.addEventListener("click",function(e){
-    const expressionContainer = document.querySelector('.expression-container');
-    displayArray.push(e.target.innerHTML);
-    formattedDisplay = displayArray.toString();
-    formattedDisplay = formattedDisplay.replace(/,/g,'');
-    expressionContainer.textContent = formattedDisplay;
-    formatStringToOperate(formattedDisplay);   
-    })
+function setValue (val){
+    numbers.forEach((number)=>{number.addEventListener('click',function(e){
+        val += e.target.textContent;
+        result.textContent = val ;
         
-    );
-};
-
-// function formatStringToOperate(array):
-function formatStringToOperate(string){
-    //create array for expression
-    let expressionArray = [];
-    //create array for operators
-    const operatorArray = ['+','-','/','x'];
-    //forEach operator:
-    operatorArray.forEach((operator)=>{
-        //if operatorArray includes operator:
-        if (string.includes(operator)){
-            //store index of operator
-            let operatorValue = operator;
-            let operatorindex = string.indexOf(operator); 
-            //firstvalue = slice from index 0 to operatorindex
-            let firstValue = string.slice(0,operatorindex);
-            //secondvalue = slice from operatorindex to end
-            let secondValue = string.slice(operatorindex + 1 );
-            let result = operate(Number(firstValue),operatorValue,Number(secondValue));
-            const equals = document.querySelector('.btn-equals');
-            equals.addEventListener('click',()=>{
-                const resultContainer = document.querySelector('.result-container');
-                resultContainer.textContent = result;
-            });
-        }   
         
-
-    })
-            //push firstvalue,operator, secondvalue to expressionArray 
-    //return expression array
-
-
+    })});
+    
+    
+    
+}
+function setOperator (){
+    operators.forEach((operate)=>{operate.addEventListener('click',function(e){
+        if (result.textContent !== null){
+            setValue(secondValue);
+        }
+        operator =  e.target.textContent;
+        display.textContent = `${result.textContent} ${operator}`;
+    
+    })});
 }
 
-//function displayResult(expression):
-    //query result-container
-    //call operate function and pass in expression array values
-    //update textContent of result-container
-updateExpressionDisplay();
+function calculateResult(){
+    let ops = ['+','/','-','x'];
+    operators.forEach(test =>{
+        test.addEventListener('click',()=>{
+            ops.forEach((op)=>{
+                if(display.textContent.includes(op)){
+                   let index = display.textContent.indexOf(op);
+                    let value = display.textContent.slice(0, index).trim();
+                    display.textContent = `${value} ${operator} ${result.textContent} =`
+                    firstValue = operate(Number(value),operator,Number(result.textContent));
+                    result.textContent = firstValue;
+                }
+            })
+        })
 
 
+
+
+
+    })
+}
+
+function stringOperations(){
+    console.log(result.textContent);
+    let ops = ['+','/','-','x'];
+    operators.forEach((operator)=>{
+        operator.addEventListener('click',function (e){
+            ops.forEach((op)=>{
+                
+                if(display.textContent.includes(op)){
+                    
+                    let index = display.textContent.indexOf(op);
+                    let value = display.textContent.slice(0, index).trim();
+                    if(value === result.textContent){
+                        setOperator()
+                    }else{
+                        let firstValue2 = operate(Number(value),operator.textContent,Number(result.textContent));
+                        console.log(firstValue2);
+                        display.textContent = `${value} ${operator.textContent} ${result.textContent} =`
+                        result.textContent = firstValue2;
+                        
+                    }
+                
+
+                                    
+                }
+            })
+        });
+    });
+};
+
+calculateResult();
+setValue(firstValue);
+setOperator();
+stringOperations();
