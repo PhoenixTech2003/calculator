@@ -81,12 +81,12 @@ body{
     flex: 1;
 }
 
+.backspace,
 .operator,
 .clr{
     cursor: pointer;
-    font-size: 45px;
 }
-
+.backspace,
 .operator,
 .clr{
     font-size: 30px;

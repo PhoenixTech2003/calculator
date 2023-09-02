@@ -3,8 +3,8 @@ const numbers = document.querySelectorAll('.number');
 const clear = document.querySelector('.clr');
 const result = document.querySelector('.result-container')
 const operators = document.querySelectorAll('.operator');
-const equals = document.querySelector('.btn-equals')
-
+const equals = document.querySelector('.btn-equals');
+const backspace = document.querySelector('.backspace');
 const display = document.querySelector('.expression-container');
 let secondValue = '';
 let operator = '';
@@ -44,10 +44,22 @@ function operate (firstValue,operator,secondValue){
 function setValue (val){
     numbers.forEach((number)=>{number.addEventListener('click',function(e){
         val += e.target.textContent;
+        if(val.includes('.')){
+            let  numberOfdots = val.split('.').length-1;
+            if(numberOfdots >= 2){
+                let dotIndex = val.lastIndexOf('.');
+                val =val.slice(0,dotIndex);
+            }
+        }
+        
         result.textContent = val ;
         
-        
+            
+            
+            
+            
     })});
+
     
     
     
@@ -64,8 +76,13 @@ function setOperator (){
             
             display.textContent = `${result.textContent} ${operator}`;
         }
+
     
+        
+        
     })});
+
+    
 }
 
 function stringOperations(){
@@ -89,24 +106,28 @@ function stringOperations(){
                         
                         firstValue = Number(firstValue).toFixed(1);
                         result.textContent = firstValue;
+                    
                     }
                 }
             })
         })
     })
+    
 }
-
-
 
 
 function clearScreen(){
+    
     clear.addEventListener('click',()=>{
-        result.textContent = 0;
-        display.textContent = '';
+        window.location.reload();
     })
 }
-stringOperations();
+
+
+
+clearScreen();
 setValue(firstValue);
+stringOperations();
 setOperator();
-clearScreen()
+
 
