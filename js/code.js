@@ -1,5 +1,6 @@
 
 const numbers = document.querySelectorAll('.number');
+const clear = document.querySelector('.clr');
 const result = document.querySelector('.result-container')
 const operators = document.querySelectorAll('.operator');
 const equals = document.querySelector('.btn-equals')
@@ -77,15 +78,16 @@ function stringOperations(){
                     let value = display.textContent.slice(0, index).trim();
                     display.textContent = `${value} ${operator} ${result.textContent}`
                     firstValue = operate(Number(value),operator,Number(result.textContent));
-                    result.textContent = firstValue;
+                    if (Math.floor(firstValue)=== firstValue){
+                        result.textContent = firstValue;
+                    }else{
+                        
+                        firstValue = Number(firstValue).toFixed(5);
+                        result.textContent = firstValue;
+                    }
                 }
             })
         })
-
-
-
-
-
     })
 }
 
@@ -103,17 +105,17 @@ function calculateResult(){
                 }
             })
         })
-
-
-
-
-
     
 }
 
-
-
+function clearScreen(){
+    clear.addEventListener('click',()=>{
+        result.textContent = 0;
+        display.textContent = '';
+    })
+}
 stringOperations();
 setValue(firstValue);
 setOperator();
+clearScreen()
 

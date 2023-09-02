@@ -81,12 +81,14 @@ body{
     flex: 1;
 }
 
-.operator{
+.operator,
+.clr{
     cursor: pointer;
     font-size: 45px;
 }
 
-.operator.clr{
+.operator,
+.clr{
     font-size: 30px;
 }
 
