@@ -78,11 +78,16 @@ function stringOperations(){
                     let value = display.textContent.slice(0, index).trim();
                     display.textContent = `${value} ${operator} ${result.textContent}`
                     firstValue = operate(Number(value),operator,Number(result.textContent));
-                    if (Math.floor(firstValue)=== firstValue){
+                    if(firstValue == 'Infinity'){
+                        alert('Thou shall not divide by zero');
+                        display.textContent = '';
+                        result.textContent = 0;
+                    }
+                    else if (Math.floor(firstValue)=== firstValue){
                         result.textContent = firstValue;
                     }else{
                         
-                        firstValue = Number(firstValue).toFixed(5);
+                        firstValue = Number(firstValue).toFixed(1);
                         result.textContent = firstValue;
                     }
                 }
@@ -92,21 +97,7 @@ function stringOperations(){
 }
 
 
-function calculateResult(){
-    let ops = ['+','/','-','x'];
-        equals.addEventListener('click',()=>{
-            ops.forEach((op)=>{
-                if(display.textContent.includes(op)){
-                   let index = display.textContent.indexOf(op);
-                    let value = display.textContent.slice(0, index).trim();
-                    display.textContent = `${value} ${operator} ${result.textContent}`
-                    firstValue = operate(Number(value),operator,Number(result.textContent));
-                    result.textContent = firstValue;
-                }
-            })
-        })
-    
-}
+
 
 function clearScreen(){
     clear.addEventListener('click',()=>{
